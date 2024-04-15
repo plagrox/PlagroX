@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tree Planting Initiative</title>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+  }
+  .header {
+    background: linear-gradient(135deg, #0d2818 0%, #04471c 50%, #058c42 100%);
+    color: #16db65;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  .nav-bar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 20px;
+  }
+  .nav-link {
+    color: #16db65;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  .nav-link:hover {
+    color: #020202;
+  }
+  .content {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    bottom: 118px;
+    margin-top: 0.4em;
+  }
+.text-section {
+  text-align: left;
+  max-width: 50%; /* Set text section to 50% */
+  margin-right: 2%; /* Decrease right margin to reduce the gap */
+}
+/* Add a gap between text-section and image-section */
+.text-section:after {
+  content: '';
+  display: inline-block;
+  width: 5%; /* Gap between text and image */
+}
+  .text-section h1 {
+    font-size: 3em;
+    margin-bottom: 0.5em;
+  }
+  .text-section p {
+    font-size: 1.2em;
+  }
+  .action-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #16db65;
+    color: #020202;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  .action-button:hover {
+    background-color: #058c42;
+  }
+  .image-section {
+  max-width: 50%; /* Set image section to 40% */
+  text-align: right; /* Aligns the image to the right */
+  
+}
+  .image-section img {
+    max-width: 100%;
+    height: 350px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 100%;
+    animation: slideInFromRight 1s ease-out forwards;
+  }
+  @keyframes slideInFromRight {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @media (max-width: 768px) {
+    .content {
+      flex-direction: column;
+      text-align: center;
+    }
+    .text-section, .image-section {
+      max-width: 100%;
+    }
+    .image-section img {
+      margin-top: 20px;
+    }
+  }
+
+  .about-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+    background-color: #058c42;
+    margin-top:0%;
+  }
+  .container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    position: relative; /* For overlapping layout */
+  }
+  .about-description {
+    background-color: #0d2818; /* Dark green background */
+    color: #16db65; /* Light green text color */
+    padding: 30px;
+    width: 50%;
+    z-index: 2; /* Above the image */
+  }
+  .about-image {
+    width: 50%;
+    position: absolute; /* Overlap image */
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%); /* Center image vertically */
+  }
+  .about-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+    .about-description,
+    .about-image {
+      width: 100%;
+      position: relative;
+      transform: none;
+    }
+    .about-image {
+      order: -1; /* Image above the text on small screens */
+    }
+  }
+ .gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 32px;
+    padding: 49px;
+    background: #0d2818; /* Dark green background */
+    padding-top: 59px; /* Adds space at the top inside the container */
+  }
+  .gallery-item {
+    background: #04471c; /* Slightly lighter green background for contrast */
+    padding: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 500px;
+    display: block;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    transition: transform 0.3s ease; /* Smooth transition for zoom effect */
+}
+
+   .gallery-item img:hover {
+  transform: scale(1.1); /* Zoom in effect on hover */
+}
+  .gallery-description {
+    color: #16db65; /* Light green text color */
+    text-align: center;
+  }
+  @media (max-width: 768px) {
+    .gallery-container {
+      grid-template-columns: 1fr; /* Stack images on smaller screens */
+    }
+  }
+
+  .contact-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 0;
+    background-color: #041009; /* Your chosen background color */
+  }
+  .container2 {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    border: 2px solid #058c42; /* Vertical line */
+  }
+  .image-side {
+    flex: 1;
+    background: url('contactf.jpg') no-repeat center center/cover;
+    height: 500px; /* Adjust height as needed */
+  }
+  .form-side {
+    flex: 1;
+    padding: 30px;
+    background: #0d2818; /* Dark green background */
+  }
+  .form-side form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  input, textarea {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #058c42;
+    background: #020202;
+    color: #16db65;
+  }
+  button {
+    padding: 10px 20px;
+    background-color: #16db65;
+    color: #020202;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #04471c;
+  }
+  @media (max-width: 768px) {
+    .contact-section {
+      flex-direction: column;
+    }
+    .container {
+      flex-direction: column;
+      border: none;
+    }
+    .image-side, .form-side {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .footer-section {
+  background-color: #020202; /* Dark background for the footer */
+  color: #16db65; /* Light green text color */
+  padding: 20px 0;
+  text-align: center;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.footer-content p {
+  margin: 10px 0;
+}
+
+
+
+</style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <img src="plagrox.png" alt="Tree Planting Logo" width="150">
+    </div>
+    <nav class="nav-bar">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="about" class="nav-link">About</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+    <div class="content">
+      <div class="text-section">
+        <h1>Plant a Tree, Save the Earth</h1>
+        <p>Join our mission to make the world greener. Every tree planted is a step towards a healthier planet.</p>
+        <!-- Button under the heading div -->
+        <a href="#join" class="action-button">Join Us</a>
+      </div>
+      <div class="image-section">
+        <img src="BGR.jpg" alt="Tree Planting Image">
+      </div>
+    </div>
+  </header>
+
+  <section class="about-section" id="about">
+    <div class="container">
+      <div class="about-description">
+        <h2>About Our Mission</h2>
+        <p>Discover our passion for reforestation and learn about the impact we're making. Join us in our efforts to plant a future.</p>
+      </div>
+      <div class="about-image">
+        <img src="world.jpg" alt="Trees">
+      </div>
+    </div>
+  </section>
+
+   <div class="gallery-container">
+    <!-- Gallery item 1 -->
+    <div class="gallery-item">
+      <img src="d1 (1).jpg" alt="Description of Image 1">
+      <div class="gallery-description">
+        <p>Description for Image 1 </p>
+      </div>
+    </div>
+    <!-- Gallery item 2 -->
+    <div class="gallery-item">
+      <img src="d1 (2).jpg" alt="Description of Image 2">
+      <div class="gallery-description">
+        <p>Description for Image 2</p>
+      </div>
+    </div>
+    <!-- Add more gallery items as needed -->
+  </div>
+  
+
+  <section class="contact-section">
+    <div class="container2">
+      <div class="image-side">
+        <!-- Image is set via CSS -->
+      </div>
+      <div class="form-side">
+        <form action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="8cddbf4d-eaaf-4c44-a220-b09e9e3dc665">
+          <input type="text" name="first_name" placeholder="First Name" required>
+          <input type="text" name="last_name" placeholder="Last Name" required>
+          <input type="email" name="email" placeholder="Email ID" required>
+          
+          <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+          <div class="h-captcha" data-captcha="true"></div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer-section">
+    <div class="container3">
+      <div class="footer-content">
+        <p>© 2024 Tree Planting Initiative. All rights reserved.</p>
+        <p>Follow us on social media for the latest updates and news.</p>
+        <!-- Social media links or icons can go here -->
+      </div>
+    </div>
+  </footer>
+
+  <!-- Required for hCaptcha -->
+<script src="https://web3forms.com/client/script.js" async defer></script>
+
+</body>
+</html>
